@@ -14,5 +14,5 @@ class ChatGPTResponder:
             model="gpt-4o-mini",
             messages=self.messages
         )
-        chatbot_response = response.choices[0].message["content"]
+        chatbot_response = response.choices[0].message.content
         return chatbot_response
