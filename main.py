@@ -1,5 +1,6 @@
 import os
 import time
+import shutil
 import audio_manager
 import llama_responder
 import chatgpt_responder
@@ -13,6 +14,15 @@ def scan_files(folder_path, scanned_files):
             if file_path not in scanned_files:
                 scanned_files.append(file_path)
     return scanned_files
+
+
+def move_file(file_path, folder_path="Processed"):
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+    try:
+        shutil.move(file_path, folder_path)
+    except Exception as e:
+        print(f"Error moving file: {e}")
 
 
 def main():
@@ -40,6 +50,7 @@ def main():
         response = ai_responder.get_response(prompt)
         audio_controller.text2audio(response)
 
+        move_file(scanned_files[0])
         scanned_files.pop(0)
 
 
