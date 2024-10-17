@@ -37,6 +37,7 @@ def main():
         ai_responder = llama_responder.LlamaResponder()
 
     while True:
+        start_time = time.time()
         scanned_files = scan_files("Inputs", scanned_files)
         if not scanned_files:
             time.sleep(1)
@@ -52,6 +53,9 @@ def main():
 
         move_file(scanned_files[0])
         scanned_files.pop(0)
+
+        end_time = time.time()
+        print(f"Response time: {end_time - start_time:.2f} seconds")
 
 
 if __name__ == "__main__":
