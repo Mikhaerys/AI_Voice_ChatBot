@@ -12,5 +12,5 @@ class LlamaResponder:
                 {"role": "user", "content": user_input}
             ]
         )
-        chatbot_response = response['messages']['content']
+        chatbot_response = response['message']['content']
         return chatbot_response

@@ -35,12 +35,24 @@ git clone https://github.com/Mikhaerys/AI_Voice_ChatBot.git
 cd AI_Voice_ChatBot
 ```
 
-2. Install the required dependencies:
+2. Create a virtual environment:
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+3. Install the required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Configure your AI model:
+4. Install the command-line tool [`ffmpeg`](https://ffmpeg.org/) from the official page or with the next command:
+```bash
+# on Windows
+winget install ffmpeg
+```
+
+5. Configure your AI model:
     - For ChatGPT: Add your API key in `main.py`
     - For Llama: Ensure that Llama 3.2 and the `ollama` library are properly downloaded and configured. You can find the necessary files and instructions on [Ollama's website](https://ollama.com).
 
@@ -52,8 +64,9 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
+3. Note: The initial run may take some time as the Whisper model needs to be downloaded.
 
-3. The system will:
+4. The system will:
     - Monitor the `Inputs` directory for new audio files
     - Convert audio to text
     - Process the question using the selected AI model

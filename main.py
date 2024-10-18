@@ -40,12 +40,16 @@ def main():
         start_time = time.time()
         scanned_files = scan_files("Inputs", scanned_files)
         if not scanned_files:
+            print("No new files found. Waiting for 1 second...")
+            end_time = time.time()
             time.sleep(1)
             continue
         try:
             prompt = audio_controller.audio2text(scanned_files[0])
         except Exception as e:
             print(f"Error converting audio to text: {e}")
+            end_time = time.time()
+            time.sleep(1)
             continue
 
         response = ai_responder.get_response(prompt)
