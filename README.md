@@ -53,7 +53,10 @@ winget install ffmpeg
 ```
 
 5. Configure your AI model:
-    - For ChatGPT: Add your API key in `main.py`
+    - For ChatGPT: Save your API key in a local `.env` file with the following content:
+    ```env
+    CHATGPT_API_KEY=your_api_key_here
+    ```
     - For Llama: Ensure that Llama 3.2 and the `ollama` library are properly downloaded and configured. You can find the necessary files and instructions on [Ollama's website](https://ollama.com).
 
 ## Usage

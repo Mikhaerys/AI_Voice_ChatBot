@@ -4,6 +4,10 @@ import shutil
 import audio_manager
 import llama_responder
 import chatgpt_responder
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 
 def scan_files(folder_path, scanned_files):
@@ -31,7 +35,7 @@ def main():
 
     USE_CHATGPT = False  # Set to True to use ChatGPT, False to use Llama
     if USE_CHATGPT:
-        api_key = "YOUR_API_KEY"
+        api_key = os.getenv("OPENAI_API_KEY")
         ai_responder = chatgpt_responder.ChatGPTResponder(api_key)
     else:
         ai_responder = llama_responder.LlamaResponder()
