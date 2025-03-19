@@ -30,10 +30,12 @@ def move_file(file_path, folder_path="Processed"):
 
 
 def main():
-    scanned_files = []
+    scanned_files = []  # Initialize list of scanned files
     audio_controller = audio_manager.AudioManager()
 
     USE_CHATGPT = False  # Set to True to use ChatGPT, False to use Llama
+    USE_RECORDING = True  # Set to True to record audio, False to use file
+
     if USE_CHATGPT:
         api_key = os.getenv("OPENAI_API_KEY")
         ai_responder = chatgpt_responder.ChatGPTResponder(api_key)
@@ -41,13 +43,19 @@ def main():
         ai_responder = llama_responder.LlamaResponder()
 
     while True:
+
+        if USE_RECORDING:
+            audio_controller.record_audio("recording.wav")
+
         start_time = time.time()
         scanned_files = scan_files("Inputs", scanned_files)
+
         if not scanned_files:
             print("No new files found. Waiting for 1 second...")
             end_time = time.time()
             time.sleep(1)
             continue
+
         try:
             prompt = audio_controller.audio2text(scanned_files[0])
         except Exception as e:
